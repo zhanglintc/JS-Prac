@@ -1,0 +1,1 @@
+document.write("JS-Prac => Hello world!!!");
