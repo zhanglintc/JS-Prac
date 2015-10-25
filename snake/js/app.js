@@ -10,8 +10,8 @@ $(document).ready(function() {
     
     var zmeyka = {};
     zmeyka.speed = 50; // snake spead
-    zmeyka.xx = 60; // x
-    zmeyka.yy = 60; // y
+    zmeyka.xx = 40; // x
+    zmeyka.yy = 40; // y
     zmeyka.polesize = zmeyka.xx*10+10;
     
     zmeyka.elem = [];
