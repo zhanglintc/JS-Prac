@@ -1,3 +1,14 @@
+/***************************************
+Make ".pole" in the horizontal middle.
+But it need to be optimized because
+position of "Eggs catchedd" isn't correct.
+/***************************************/
+.pole {
+    margin: auto;
+    position: absolute;
+    left: 0; right: 0;
+}
+
 .kvadrat {
     width: 10px;
     height: 10px;
