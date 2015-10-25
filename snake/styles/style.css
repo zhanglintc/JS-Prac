@@ -1,0 +1,43 @@
+.kvadrat {
+    width: 10px;
+    height: 10px;
+    float: left;
+    display: block;
+    margin: 0px;
+    padding: 0px;
+    text-align: center;
+    background: black;
+ 
+}
+
+.zmeya {
+    width: 10px;
+    height: 10px;
+    float: left;
+    display: block;
+    margin: 0px;
+    padding: 0px;
+    text-align: center;
+    background: orange;
+}
+.zmeyakrasna {
+    width: 10px;
+    height: 10px;
+    float: left;
+    display: block;
+    margin: 0px;
+    padding: 0px;
+    text-align: center;
+    background: white;
+}
+.yaytso {
+    width: 10px;
+    height: 10px;
+    float: left;
+    display: block;
+    margin: 0px;
+    padding: 0px;
+    text-align: center;
+    background: yellow;
+ 
+}
