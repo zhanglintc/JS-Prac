@@ -1,0 +1,11 @@
+div#up {
+    float: up;
+    background: green;
+}
+
+div#down {
+    float: down;
+    background: red
+}
+
+
