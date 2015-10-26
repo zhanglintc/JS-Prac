@@ -1,12 +1,21 @@
-/***************************************
-Make ".pole" in the horizontal middle.
-But it need to be optimized because
-position of "Eggs catchedd" isn't correct.
-/***************************************/
-.pole {
-    margin: auto;
-    position: absolute;
-    left: 0; right: 0;
+body {
+    font-family: Consolas, Monaco, "Bitstream Vera Sans Mono", "Lucida Console", Terminal, monospace;
+}
+
+.grid {
+    background: green;
+    padding-left: 30%;
+}
+
+.score {
+    background: red;
+    padding-left: 40%;
+    padding-top: 10;
+    padding-bottom: 10;
+}
+
+.score p {
+    font-size: 22px;
 }
 
 .kvadrat {
