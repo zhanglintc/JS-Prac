@@ -59,7 +59,7 @@ $(document).ready(function() {
     $(".snakeHead").removeClass('snakeHead');
 
     $(".snakeBody").removeClass('snakeBody');  //// управління головою
-            switch (game.sob) {
+            switch (game.direction) {
               case "left":
                 if (game.elem[0].x > 0){
                 game.elem[0].x--;
@@ -104,7 +104,7 @@ $(document).ready(function() {
      }  
      if (game.elem[0].x == game.foodX && game.elem[0].y == game.foodY){ /// коли яйце зїдене
         game.elem.push({x: 0, y: 0});
-        $(".yaits").html(++game.score);
+        $(".gScore").html(++game.score);
         game.removeFood();
         
         game.foodX = rand(0,game.Width);
@@ -121,20 +121,20 @@ $(document).ready(function() {
     $(window).keydown(function (e) { /// реагування на клавіши
             switch (e.keyCode) {  
               case 37:
-               // if (game.sob!="right")
-                game.sob = "left";
+               // if (game.direction!="right")
+                game.direction = "left";
                 break
               case 38:
-               // if (game.sob!="down")
-                game.sob = "up";
+               // if (game.direction!="down")
+                game.direction = "up";
                 break
               case 39:
-                //if (game.sob!="left")
-                game.sob = "right";
+                //if (game.direction!="left")
+                game.direction = "right";
                 break
               case 40:
-                //if (game.sob!="up")
-                game.sob = "down";
+                //if (game.direction!="up")
+                game.direction = "down";
                 break
             }
            })     
