@@ -8,133 +8,133 @@ $(document).ready(function() {
     }
 
     
-    var zmeyka = {};
-    zmeyka.speed = 50; // snake spead
-    zmeyka.xx = 40; // x
-    zmeyka.yy = 40; // y
-    zmeyka.polesize = zmeyka.xx*10+10;
+    var game = {};
+    game.speed  = 50; // snake spead
+    game.Width  = 40; // x
+    game.Height = 40; // y
+    game.gridSize = game.Width*10+10;
     
-    zmeyka.elem = [];
+    game.elem = [];
     
-    var xxx = rand(0,zmeyka.xx);
-    var yyy = rand(0,zmeyka.yy);
-    zmeyka.elem[0]  = {x: xxx, y: yyy};
+    var xxx = rand(0,game.Width);
+    var yyy = rand(0,game.Height);
+    game.elem[0]  = {x: xxx, y: yyy};
 
-    zmeyka.score = 0;
-    zmeyka.dlina = zmeyka.score;
+    game.score = 0;
+    game.dlina = game.score;
     
-    zmeyka.yayx = rand(0,zmeyka.xx);
-    zmeyka.yayy = rand(0,zmeyka.xx);
+    game.foodX = rand(0,game.Width);
+    game.foodY = rand(0,game.Width);
      
-    zmeyka.poleBuild = function () { // init Area
+    game.poleBuild = function () { // init Area
         var pole = new String();
-        for (var y = 0; y < this.yy + 1; y++) {
-            for (var x = 0; x < this.xx + 1; x++){
-                pole += '<div class="kvadrat" id="xy_' + x + '_' + y + '"></div>';
+        for (var y = 0; y < this.Height + 1; y++) {
+            for (var x = 0; x < this.Width + 1; x++){
+                pole += '<div class="board" id="xy_' + x + '_' + y + '"></div>';
             }
         }
-        $("#body").append('<div style="width: ' + zmeyka.polesize + '; height: ' + zmeyka.polesize + '" class="pole">' + pole + '</div>');   
+        $("#body").append('<div style="width: ' + game.gridSize + '; height: ' + game.gridSize + '" class="pole">' + pole + '</div>');   
     }
      
-    zmeyka.yaytsoBuild = function (){  // egg create
-        $("#xy_" + zmeyka.yayx + "_"+ zmeyka.yayy).addClass('yaytso');
+    game.createFood = function (){  // egg create
+        $("#xy_" + game.foodX + "_"+ game.foodY).addClass('food');
     }
-    zmeyka.yaytsoUnBuild = function (){
-        $(".yaytso").first().removeClass('yaytso');
+    game.removeFood = function (){
+        $(".food").first().removeClass('food');
     }
     
     
      
-    zmeyka.move = function () {
-    if (zmeyka.elem.length >= 1 && zmeyka.trevoga==false) { // if snake length > 1
-        for (var i = zmeyka.elem.length; i >= 1  ; i--){
-                zmeyka.elem[i]  = {x: zmeyka.elem[i-1].x, y: zmeyka.elem[i-1].y}; // позначаємо координати елементів
+    game.move = function () {
+    if (game.elem.length >= 1 && game.life==false) { // if snake length > 1
+        for (var i = game.elem.length; i >= 1  ; i--){
+                game.elem[i]  = {x: game.elem[i-1].x, y: game.elem[i-1].y}; // позначаємо координати елементів
                 // координата останнього - має координату попередника.
                 // перевизначаємо усі координати елементів змійки
         }
     }
    
           
-    $("#xy_" + zmeyka.elem[0].x + "_"+ zmeyka.elem[0].y).addClass('zmeya');
-    $(".zmeyakrasna").removeClass('zmeyakrasna');
+    $("#xy_" + game.elem[0].x + "_"+ game.elem[0].y).addClass('snakeBody');
+    $(".snakeHead").removeClass('snakeHead');
 
-    $(".zmeya").removeClass('zmeya');  //// управління головою
-            switch (zmeyka.sob) {
+    $(".snakeBody").removeClass('snakeBody');  //// управління головою
+            switch (game.sob) {
               case "left":
-                if (zmeyka.elem[0].x > 0){
-                zmeyka.elem[0].x--;
-                zmeyka.trevoga = false;
+                if (game.elem[0].x > 0){
+                game.elem[0].x--;
+                game.life = false;
                 }
                 else {
                      
-                    zmeyka.trevoga = true
+                    game.life = true
                 }
                 break
               case "up":
-                if (zmeyka.elem[0].y > 0){
-                zmeyka.elem[0].y--;
-                zmeyka.trevoga = false;
+                if (game.elem[0].y > 0){
+                game.elem[0].y--;
+                game.life = false;
                 }
-                else zmeyka.trevoga = true
+                else game.life = true
                 break
               case "right":
-                if (zmeyka.elem[0].x < zmeyka.xx){
-                zmeyka.elem[0].x++;
-                zmeyka.trevoga = false;
+                if (game.elem[0].x < game.Width){
+                game.elem[0].x++;
+                game.life = false;
                 }
-                else zmeyka.trevoga = true
+                else game.life = true
                 break
               case "down":
-                if (zmeyka.elem[0].y < zmeyka.yy){
-                zmeyka.elem[0].y++;
-                zmeyka.trevoga = false;
+                if (game.elem[0].y < game.Height){
+                game.elem[0].y++;
+                game.life = false;
                 }
-                else zmeyka.trevoga = true
+                else game.life = true
                 break
             }     
      
      
-     for (var n = 0; n <= zmeyka.score; n++){ // малюємо усі квадрати змійки
+     for (var n = 0; n <= game.score; n++){ // малюємо усі квадрати змійки
      if (n==0){
-        $("#xy_" + zmeyka.elem[n].x + "_"+ zmeyka.elem[n].y).addClass('zmeyakrasna');
+        $("#xy_" + game.elem[n].x + "_"+ game.elem[n].y).addClass('snakeHead');
      }
      else {
-            $("#xy_" + zmeyka.elem[n].x + "_"+ zmeyka.elem[n].y).addClass('zmeya');
+            $("#xy_" + game.elem[n].x + "_"+ game.elem[n].y).addClass('snakeBody');
      }
      }  
-     if (zmeyka.elem[0].x == zmeyka.yayx && zmeyka.elem[0].y == zmeyka.yayy){ /// коли яйце зїдене
-        zmeyka.elem.push({x: 0, y: 0});
-        $(".yaits").html(++zmeyka.score);
-        zmeyka.yaytsoUnBuild();
+     if (game.elem[0].x == game.foodX && game.elem[0].y == game.foodY){ /// коли яйце зїдене
+        game.elem.push({x: 0, y: 0});
+        $(".yaits").html(++game.score);
+        game.removeFood();
         
-        zmeyka.yayx = rand(0,zmeyka.xx);
-        zmeyka.yayy = rand(0,zmeyka.xx);
+        game.foodX = rand(0,game.Width);
+        game.foodY = rand(0,game.Width);
         
-        zmeyka.yaytsoBuild();
+        game.createFood();
      }
      
     }
-    zmeyka.poleBuild(); // будуємо поле
-    setInterval(zmeyka.move, zmeyka.speed);  // запускаємо квадрат
-    zmeyka.yaytsoBuild(); // запускаємо яйце
+    game.poleBuild(); // будуємо поле
+    setInterval(game.move, game.speed);  // запускаємо квадрат
+    game.createFood(); // запускаємо яйце
     
     $(window).keydown(function (e) { /// реагування на клавіши
             switch (e.keyCode) {  
               case 37:
-               // if (zmeyka.sob!="right")
-                zmeyka.sob = "left";
+               // if (game.sob!="right")
+                game.sob = "left";
                 break
               case 38:
-               // if (zmeyka.sob!="down")
-                zmeyka.sob = "up";
+               // if (game.sob!="down")
+                game.sob = "up";
                 break
               case 39:
-                //if (zmeyka.sob!="left")
-                zmeyka.sob = "right";
+                //if (game.sob!="left")
+                game.sob = "right";
                 break
               case 40:
-                //if (zmeyka.sob!="up")
-                zmeyka.sob = "down";
+                //if (game.sob!="up")
+                game.sob = "down";
                 break
             }
            })     
